@@ -1,0 +1,6 @@
+
+class viewTemplate {
+	
+	public constructor() {
+	}
+}
