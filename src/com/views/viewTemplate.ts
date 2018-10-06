@@ -1,6 +1,0 @@
-
-class viewTemplate {
-	
-	public constructor() {
-	}
-}
