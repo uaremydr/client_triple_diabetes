@@ -62,6 +62,8 @@ class Main extends egret.DisplayObjectContainer {
 
     }
 
+    /**测试 */
+    // private testX:any = new Object();
     private async runGame() {
         await this.loadResource()
         this.createGameScene();
@@ -71,6 +73,71 @@ class Main extends egret.DisplayObjectContainer {
         const userInfo = await platform.getUserInfo();
         console.log(userInfo);
 
+        // let a:any = new Object();
+        // let i:number = 0;
+        // let testX:any = new Object();
+        // // this.testX.q = 0;
+        // // a = this.testX;
+        // // this.testX.q = 3;
+        // testX.q = 0;
+        // a = testX.q;
+        // testX.q = 3;
+        // // let j:number = 0;
+        // // for(i=1; i<=4; i++){
+        // //     a.a2 = i;
+        // //     if(i == 1){
+        // //         a.a5 = 3;
+        // //         a.a8 = 3;
+        // //     }else if(i == 2){
+        // //         a.a5 = 4;
+        // //         a.a4 = 4;
+        // //     }else if(i == 2){
+        // //         a.a5 = 1;
+        // //         a.a9 = 1;
+        // //     }else if(i == 2){
+        // //         a.a5 = 2;
+        // //         a.a7 = 2;
+        // //     }
+        // //     for(j=1; j<=4; j++){
+        // //         a.a6 = j;
+        // //         if(j == 1){
+        // //             a.a2 = a.a4 = a.a8;
+        // //         }
+        // //     }
+        // // }
+        // console.log(a);
+        let testA:any = new Object();
+        testA.i = 0;
+        let testB = testA;
+        testA.i = 3;
+        console.log(testB.i);//输出为3；
+
+        let testC:any = new Number(0);
+        let testD = testC;
+        testC = 3;
+        console.log(testD);//输出为0；
+    }
+    private addFor():void{
+
+    }
+    /**判断1,2,3,4哪个选项最少 */
+    private leastSelect(arr:Array<number>):number{
+        let a:any = new Object();
+        a.a1 = 0;
+        a.a2 = 0;
+        a.a3 = 0;
+        a.a4 = 0;
+        a.min = null;
+        for(let i:number=0; i<arr.length; i++){
+            a["a"+arr[i]]++;
+        }
+        a.min = 1;
+        for(let i:number=2; i<=4; i++){
+            if(a["a"+i] <= a["a"+a.min]){
+                a.min = i;
+            }
+        }
+        return a.min;
     }
 
     private async loadResource() {
