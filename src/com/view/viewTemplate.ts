@@ -1,7 +1,9 @@
 module com.view {
 	
-	export class viewTemplate {
+	export class ViewTemplate {
+
 		public constructor() {
 		}
+		
 	}
 }

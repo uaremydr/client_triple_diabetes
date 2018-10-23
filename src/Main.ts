@@ -61,9 +61,7 @@ class Main extends egret.DisplayObjectContainer {
 
 
     }
-
-    /**测试 */
-    // private testX:any = new Object();
+    
     private async runGame() {
         await this.loadResource()
         this.createGameScene();
@@ -73,39 +71,6 @@ class Main extends egret.DisplayObjectContainer {
         const userInfo = await platform.getUserInfo();
         console.log(userInfo);
 
-        // let a:any = new Object();
-        // let i:number = 0;
-        // let testX:any = new Object();
-        // // this.testX.q = 0;
-        // // a = this.testX;
-        // // this.testX.q = 3;
-        // testX.q = 0;
-        // a = testX.q;
-        // testX.q = 3;
-        // // let j:number = 0;
-        // // for(i=1; i<=4; i++){
-        // //     a.a2 = i;
-        // //     if(i == 1){
-        // //         a.a5 = 3;
-        // //         a.a8 = 3;
-        // //     }else if(i == 2){
-        // //         a.a5 = 4;
-        // //         a.a4 = 4;
-        // //     }else if(i == 2){
-        // //         a.a5 = 1;
-        // //         a.a9 = 1;
-        // //     }else if(i == 2){
-        // //         a.a5 = 2;
-        // //         a.a7 = 2;
-        // //     }
-        // //     for(j=1; j<=4; j++){
-        // //         a.a6 = j;
-        // //         if(j == 1){
-        // //             a.a2 = a.a4 = a.a8;
-        // //         }
-        // //     }
-        // // }
-        // console.log(a);
         let testA:any = new Object();
         testA.i = 0;
         let testB = testA;
@@ -116,6 +81,13 @@ class Main extends egret.DisplayObjectContainer {
         let testD = testC;
         testC = 3;
         console.log(testD);//输出为0；
+
+
+        let sin1:com.demo.pattern.SingletonPatternDemo = com.demo.pattern.SingletonPatternDemo.instance;
+        sin1.data = [1,2];
+        let sin2:com.demo.pattern.SingletonPatternDemo = com.demo.pattern.SingletonPatternDemo.instance;
+        console.log(sin1,sin2);
+        egret.MainContext.deviceType
     }
     private addFor():void{
 
