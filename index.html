@@ -16,6 +16,7 @@
 	<link rel="apple-touch-icon" sizes="114x114" href="loading/apple-touch-icon-iphone4.png" />
     <style>
         html, body {
+            touch-action: none;
             -ms-touch-action: none;
             background: #888888;
             padding: 0;
@@ -36,7 +37,7 @@
             top: 50%;
             transform: translateY(-50%);
         }
-		#progressbar {
+		/*#progressbar {
 			z-index: 1001;
 			position: absolute;
 			left: 50%;
@@ -50,22 +51,19 @@
 			font-size: 1em;
 			color:red;
 			overflow: hidden;
-        }
-		p{
+        }*/
+		/*p{
 			z-index: 0;
-			/*position: relative;
-			top: -50px;*/
-			/*margin-top: -30px;*/
-		}
-		#progressBorder{
+		}*/
+		/*#progressBorder{
 			position: absolute;
 			width: 500px;
 			height: 57px;
 			top: 0px;
 			left: 0px;
 			z-index: -1;
-		}
-		#progress {
+		}*/
+		/*#progress {
 			position: absolute;
 			background-image: url("loading/img_progressBar.png");
 			background-repeat: no-repeat;
@@ -74,6 +72,66 @@
 			height: 20px;
 			top: 20px;
 			left: 25px;
+			z-index: -2;
+		}*/
+        #progressbar {
+			z-index: 1001;
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 15%;
+			max-width: 500px;
+			width: 80%;
+			height: 0;
+			padding-bottom: 11.4%;
+			margin: auto;
+			overflow: hidden;
+        }
+		#progressTxt{
+			z-index: 0;
+			position: absolute;
+			top: 0;
+			right: 0;
+			left: 0;
+			bottom: 0;
+			margin: auto;
+			width: 100%;
+			height: 28%;
+			font-size: 14px;
+			/*position: relative;
+			top: -50px;*/
+			/*margin-top: -30px;*/
+		}
+		#progressBorder{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			right: 0;
+			left: 0;
+			z-index: -1;
+		}
+		#progressContent{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			max-width: 500px;
+			max-height: 57px;
+			top: 0;
+			/*line-height: 169%;*/
+			text-align: center;
+			/*font-size: 16px;*/
+			color:red;
+		}
+		#progress {
+			position: absolute;
+			background-image: url("loading/img_progressBar.png");
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+			width: 0px;
+			height: 35.1%;
+			top: 35.1%;
+			left: 5%;
 			z-index: -2;
 		}
 
@@ -117,12 +175,21 @@
 </head>
 
 <body>
-    <div id="preloading"></div><!--加载动图-->
-	<div id="progressbar"><!--进度条-->
-		<img id="progressBorder" src="./loading/img_progressBorder.png">
+    <!--<div id="preloading"></div>加载动图-->
+	<!--<div id="progressbar">进度条-->
+		<!--<img id="progressBorder" src="./loading/img_progressBorder.png">-->
 		<!--<img id='progress' src="./loading/img_progressBar.png">-->
-		<div id='progress'></div><!--进度文本-->
-		<p></p>
+		<!--<div id='progress'></div>进度文本-->
+		<!--<p></p>-->
+	<!--</div>-->
+    <div id="preloading"></div>
+	<div id="progressbar">
+		<div id='progressContent'>
+			<img id="progressBorder" src="./loading/img_progressBorder.png">
+			<!--<img id='progress' src="./loading/img_progressBar.png">-->
+			<div id='progress'></div>
+			<p id='progressTxt'></p>
+		</div>
 	</div>
     <div style="margin: auto;width: 100%;height: 100%;" class="egret-player"
          data-entry-class="Main"
@@ -171,6 +238,15 @@
         }, false);
         document.body.appendChild(s);
     };
+
+    var wid = window.innerWidth;
+    console.log("wid:"+wid);
+    var wid2 = document.documentElement.clientWidth;
+    console.log("wid2:"+wid2);
+    var wid3 = window.devicePixelRatio;
+    console.log("wid3:"+wid3);
+    alert("wid:"+wid+","+"wid2:"+wid2+","+"wid3:"+wid3);
+    
 
     var xhr = new XMLHttpRequest();
     xhr.open('GET', './manifest.json?v=' + Math.random(), true);

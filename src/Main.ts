@@ -87,7 +87,8 @@ class Main extends egret.DisplayObjectContainer {
         sin1.data = [1,2];
         let sin2:com.demo.pattern.SingletonPatternDemo = com.demo.pattern.SingletonPatternDemo.instance;
         console.log(sin1,sin2);
-        egret.MainContext.deviceType
+        egret.MainContext.deviceType;
+        var zip = new JSZip();
     }
     private addFor():void{
 
