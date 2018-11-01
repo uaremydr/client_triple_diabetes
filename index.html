@@ -102,12 +102,8 @@
     </style>
 </head>
 
-<body>
-	<audio id="music" autoplay="autoplay">
-		<!--<source src="resource/audio/kongfu.mp3" type="audio/mpeg">
-		<source src="resource/audio/market.mp3" type="audio/mpeg">
-		<source src="resource/audio/play.mp3" type="audio/mpeg">-->
-	</audio>
+<body onclick="">
+	<audio id="bgMusic" autoplay="autoplay"></audio>
     <div id="preloading"></div>
 	<div id="progressbar">
 		<div id='progressContent'>
@@ -131,24 +127,39 @@
 	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script> 
 	<script>
 		/**加载音乐(循环播放)*/
-		var musicUrlArr = ["resource/audio/short5.mp3","resource/audio/kongfu.mp3","resource/audio/market.mp3","resource/audio/play.mp3"];
-		var myAudio = document.getElementById("music");
-		myAudio.src = musicUrlArr.shift();
-		musicUrlArr.push(myAudio.src);
-		myAudio.addEventListener("ended",playEndFunc,false);
-		myAudio.addEventListener("WeixinJSBridgeReady",playWeixinAudio,false);
-		function playWeixinAudio(){
-			alert("播放成功");
-			myAudio.play();
-		}
-		function playEndFunc(){
-			myAudio.src = musicUrlArr.shift();
+		var musicUrlArr = ["resource/audio/short5.mp3","resource/audio/kongfu.mp3","resource/audio/market.mp3","resource/audio/playing.mp3"];
+		var myAudio = document.getElementById("bgMusic");
+		setTimeout(onLoadEndFunc,1000);
+		myAudio.volume = 0;
+		musicUrlArr.push(myAudio.src = musicUrlArr.shift());
+		myAudio.addEventListener("ended",onPlayEndFunc,false);
+		function onPlayEndFunc(){
 			console.log(musicUrlArr);
-			musicUrlArr.push(myAudio.src);
+			musicUrlArr.push(myAudio.src = musicUrlArr.shift());
 			myAudio.play();
 		}
-		myAudio.volume = 0.1;
-		alert(myAudio.volume);
+		function onLoadEndFunc(){
+			alert(myAudio.readyState);
+			window.addEventListener("touchstart",onTouchStart,false);
+			window.dispatchEvent(new Event("touchstart"));
+			myAudio.load();
+			musicUrlArr.push(myAudio.src = musicUrlArr.shift());
+			// myAudio.play();
+			myAudio.volume = 1;
+		}
+		function onTouchStart(e){
+			alert("touch");
+			musicUrlArr.push(myAudio.src = musicUrlArr.shift());
+			myAudio.load();
+			myAudio.play();
+
+		}
+		/**特殊处理iOS无法自动播放音乐（仅微信可用）*/
+		document.addEventListener("WeixinJSBridgeReady",playWeixinAudio,false);
+		function playWeixinAudio(){
+			myAudio.play();
+			document.removeEventListener("WeixinJSBridgeReady",playWeixinAudio,false);
+		}
 
 		/**进度文本和进度条显示*/
 		var progressfn = function (cent, info) {
