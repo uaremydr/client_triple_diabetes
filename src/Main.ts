@@ -134,7 +134,7 @@ class Main extends egret.DisplayObjectContainer {
      */
     private createGameScene() {
         let sky = this.createBitmapByName("bg_jpg");
-        this.addChild(sky);
+        // this.addChild(sky);
         let stageW = this.stage.stageWidth;
         let stageH = this.stage.stageHeight;
         sky.width = stageW;

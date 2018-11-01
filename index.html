@@ -11,14 +11,14 @@
     <meta name="x5-fullscreen" content="true" />
     <meta name="360-fullscreen" content="true" />
     <!--苹果为iOS设备配备了apple-touch-icon私有属性，添加该属性，在iPhone,iPad,iTouch的safari浏览器上可以使用添加到主屏按钮将网站添加到主屏幕上，方便用户以后访问。-->
-	<link rel="apple-touch-icon" href="loading/apple-touch-icon-iphone.png" />
-	<link rel="apple-touch-icon" sizes="72x72" href="loading/apple-touch-icon-ipad.png" />
-	<link rel="apple-touch-icon" sizes="114x114" href="loading/apple-touch-icon-iphone4.png" />
+	<link rel="apple-touch-icon" href="resource/loading/apple-touch-icon-iphone.png" />
+	<link rel="apple-touch-icon" sizes="72x72" href="resource/loading/apple-touch-icon-ipad.png" />
+	<link rel="apple-touch-icon" sizes="114x114" href="resource/loading/apple-touch-icon-iphone4.png" />
     <style>
         html, body {
             touch-action: none;
             -ms-touch-action: none;
-            background: #888888;
+            background: #00AEEF;
             padding: 0;
             border: 0;
             margin: 0;
@@ -27,53 +27,18 @@
         #preloading {
             z-index: 1000;
             position: absolute;
-            background-image: url("loading/preloading.gif");
+            background-image: url("resource/loading/loading_1.gif");
+			background-size: 100% 100%;
             background-repeat: no-repeat;
-            width: 145px;
-            height: 114px;
-            margin-left:-72.5px;
-            left:50%;
-            transform: translateX(-50%);
-            top: 50%;
-            transform: translateY(-50%);
+            width: 300px;
+            height: 225px;
+			top: 20%;
+			right: 0;
+			left: 0;
+			margin: auto;
+            /*transform: translateX(-50%);
+            transform: translateY(-50%);*/
         }
-		/*#progressbar {
-			z-index: 1001;
-			position: absolute;
-			left: 50%;
-			bottom: 20%;
-			height: 57px;
-			width: 500px;
-			margin-top: -57px;
-			margin-left: -250px;
-			line-height: 27px;
-			text-align: center;
-			font-size: 1em;
-			color:red;
-			overflow: hidden;
-        }*/
-		/*p{
-			z-index: 0;
-		}*/
-		/*#progressBorder{
-			position: absolute;
-			width: 500px;
-			height: 57px;
-			top: 0px;
-			left: 0px;
-			z-index: -1;
-		}*/
-		/*#progress {
-			position: absolute;
-			background-image: url("loading/img_progressBar.png");
-			background-repeat: no-repeat;
-			background-size: 450px 20px;
-			width: 0px;
-			height: 20px;
-			top: 20px;
-			left: 25px;
-			z-index: -2;
-		}*/
         #progressbar {
 			z-index: 1001;
 			position: absolute;
@@ -125,7 +90,7 @@
 		}
 		#progress {
 			position: absolute;
-			background-image: url("loading/img_progressBar.png");
+			background-image: url("resource/loading/img_progressBar.png");
 			background-repeat: no-repeat;
 			background-size: 100% 100%;
 			width: 0px;
@@ -134,58 +99,19 @@
 			left: 5%;
 			z-index: -2;
 		}
-
-		/*#progress {
-			background-size: 450px 20px;
-			background-image: -webkit-linear-gradient(-0deg, #C79D2E, #C79D2E 25%, #C79D2E 25%, #C79D2E 50%, #C79D2E 50%, #C79D2E 75%, #C79D2E 75%, #C79D2E);
-			background-image: -moz-linear-gradient(-0deg, #C79D2E, #C79D2E 25%, #C79D2E 25%, #C79D2E 50%, #C79D2E 50%, #C79D2E 75%, #C79D2E 75%, #C79D2E);
-			background-image: linear-gradient(-0deg, #C79D2E, #C79D2E 25%, #C79D2E 25%, #C79D2E 50%, #C79D2E 50%, #C79D2E 75%, #C79D2E 75%, #C79D2E);
-			-webkit-animation: animate 1.5s linear infinite;
-			-moz-animation: animate 1.5s linear infinite;
-			animation: animate 1.5s linear infinite;
-		}*/
-
-		@-webkit-keyframes animate {/**针对chrome和safari浏览器*/
-			from {
-				background-position: 0 0;
-			}
-			to {
-				background-position: 60px 30px;
-			}
-		}
-
-		@-moz-keyframes animate {/**针对moz浏览器*/
-			from {
-				background-position: 0 0;
-			}
-			to {
-				background-position: 60px 30px;
-			}
-		}
-
-		@keyframes animate {/**针对IE浏览器*/
-			from {
-				background-position: 0 0;
-			}
-			to {
-				background-position: 60px 30px;
-			}
-		}
     </style>
 </head>
 
 <body>
-    <!--<div id="preloading"></div>加载动图-->
-	<!--<div id="progressbar">进度条-->
-		<!--<img id="progressBorder" src="./loading/img_progressBorder.png">-->
-		<!--<img id='progress' src="./loading/img_progressBar.png">-->
-		<!--<div id='progress'></div>进度文本-->
-		<!--<p></p>-->
-	<!--</div>-->
+	<audio id="music" autoplay="autoplay">
+		<!--<source src="resource/audio/kongfu.mp3" type="audio/mpeg">
+		<source src="resource/audio/market.mp3" type="audio/mpeg">
+		<source src="resource/audio/play.mp3" type="audio/mpeg">-->
+	</audio>
     <div id="preloading"></div>
 	<div id="progressbar">
 		<div id='progressContent'>
-			<img id="progressBorder" src="./loading/img_progressBorder.png">
+			<img id="progressBorder" src="resource/loading/img_progressBorder.png">
 			<!--<img id='progress' src="./loading/img_progressBar.png">-->
 			<div id='progress'></div>
 			<p id='progressTxt'></p>
@@ -202,79 +128,91 @@
          data-show-fps="false" data-show-log="false"
          data-show-fps-style="x:0,y:0,size:12,textColor:0xffffff,bgAlpha:0.9">
     </div>
-<script>
-    /**进度文本和进度条显示*/
-	var progressfn = function (cent, info) {
-		var progressbar = document.getElementById("progressbar");
-		progressbar.innerHTML = info + ":" + cent + "%";
-		var progress = document.getElementById("progress");
-		progress.style.width = cent + "%";
-	}
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script> 
+	<script>
+		/**加载音乐(循环播放)*/
+		var musicUrlArr = ["resource/audio/short5.mp3","resource/audio/kongfu.mp3","resource/audio/market.mp3","resource/audio/play.mp3"];
+		var myAudio = document.getElementById("music");
+		myAudio.src = musicUrlArr.shift();
+		musicUrlArr.push(myAudio.src);
+		myAudio.addEventListener("ended",playEndFunc,false);
+		myAudio.addEventListener("WeixinJSBridgeReady",playWeixinAudio,false);
+		function playWeixinAudio(){
+			alert("播放成功");
+			myAudio.play();
+		}
+		function playEndFunc(){
+			myAudio.src = musicUrlArr.shift();
+			console.log(musicUrlArr);
+			musicUrlArr.push(myAudio.src);
+			myAudio.play();
+		}
+		myAudio.volume = 0.1;
+		alert(myAudio.volume);
 
-    var loadScript = function (list, callback) {
-        var loaded = 0;
-        var loadNext = function () {
-            loadSingleScript(list[loaded], function () {
-                loaded++;
-                if (loaded >= list.length) {
-                    callback();
-                }
-                else {
-                    loadNext();
-                }
-            })
-        };
-        loadNext();
-    };
+		/**进度文本和进度条显示*/
+		var progressfn = function (cent, info) {
+			var progressbar = document.getElementById("progressbar");
+			progressbar.innerHTML = info + ":" + cent + "%";
+			var progress = document.getElementById("progress");
+			progress.style.width = cent + "%";
+		}
 
-    var loadSingleScript = function (src, callback) {
-        var s = document.createElement('script');
-        s.async = false;
-        s.src = src;
-        s.addEventListener('load', function () {
-            s.parentNode.removeChild(s);
-            s.removeEventListener('load', arguments.callee, false);
-            callback();
-        }, false);
-        document.body.appendChild(s);
-    };
+		var loadScript = function (list, callback) {
+			var loaded = 0;
+			var loadNext = function () {
+				loadSingleScript(list[loaded], function () {
+					loaded++;
+					if (loaded >= list.length) {
+						callback();
+					}
+					else {
+						loadNext();
+					}
+				})
+			};
+			loadNext();
+		};
 
-    var wid = window.innerWidth;
-    console.log("wid:"+wid);
-    var wid2 = document.documentElement.clientWidth;
-    console.log("wid2:"+wid2);
-    var wid3 = window.devicePixelRatio;
-    console.log("wid3:"+wid3);
-    alert("wid:"+wid+","+"wid2:"+wid2+","+"wid3:"+wid3);
-    
+		var loadSingleScript = function (src, callback) {
+			var s = document.createElement('script');
+			s.async = false;
+			s.src = src;
+			s.addEventListener('load', function () {
+				s.parentNode.removeChild(s);
+				s.removeEventListener('load', arguments.callee, false);
+				callback();
+			}, false);
+			document.body.appendChild(s);
+		};
 
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', './manifest.json?v=' + Math.random(), true);
-    xhr.addEventListener("load", function () {
-        var manifest = JSON.parse(xhr.response);
-        var list = manifest.initial.concat(manifest.game);
-        loadScript(list, function () {
-            /**
-             * {
-             * "renderMode":, //Engine rendering mode, "canvas" or "webgl"
-             * "audioType": 0 //Use the audio type, 0: default, 2: web audio, 3: audio
-             * "antialias": //Whether the anti-aliasing is enabled in WebGL mode, true: on, false: off, defaults to false
-             * "calculateCanvasScaleFactor": //a function return canvas scale factor
-             * }
-             **/
-            egret.runEgret({ renderMode: "webgl", audioType: 0, calculateCanvasScaleFactor:function(context) {
-                var backingStore = context.backingStorePixelRatio ||
-                    context.webkitBackingStorePixelRatio ||
-                    context.mozBackingStorePixelRatio ||
-                    context.msBackingStorePixelRatio ||
-                    context.oBackingStorePixelRatio ||
-                    context.backingStorePixelRatio || 1;
-                return (window.devicePixelRatio || 1) / backingStore;
-            }});
-        });
-    });
-    xhr.send(null);
-</script>
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', './manifest.json?v=' + Math.random(), true);
+		xhr.addEventListener("load", function () {
+			var manifest = JSON.parse(xhr.response);
+			var list = manifest.initial.concat(manifest.game);
+			loadScript(list, function () {
+				/**
+				 * {
+				 * "renderMode":, //Engine rendering mode, "canvas" or "webgl"
+				 * "audioType": 0 //Use the audio type, 0: default, 2: web audio, 3: audio
+				 * "antialias": //Whether the anti-aliasing is enabled in WebGL mode, true: on, false: off, defaults to false
+				 * "calculateCanvasScaleFactor": //a function return canvas scale factor
+				 * }
+				 **/
+				egret.runEgret({ renderMode: "webgl", audioType: 0, calculateCanvasScaleFactor:function(context) {
+					var backingStore = context.backingStorePixelRatio ||
+						context.webkitBackingStorePixelRatio ||
+						context.mozBackingStorePixelRatio ||
+						context.msBackingStorePixelRatio ||
+						context.oBackingStorePixelRatio ||
+						context.backingStorePixelRatio || 1;
+					return (window.devicePixelRatio || 1) / backingStore;
+				}});
+			});
+		});
+		xhr.send(null);
+	</script>
 </body>
 
 </html>
