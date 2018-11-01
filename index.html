@@ -129,36 +129,29 @@
 		/**加载音乐(循环播放)*/
 		var musicUrlArr = ["resource/audio/short5.mp3","resource/audio/kongfu.mp3","resource/audio/market.mp3","resource/audio/playing.mp3"];
 		var myAudio = document.getElementById("bgMusic");
-		setTimeout(onLoadEndFunc,1000);
-		myAudio.volume = 0;
-		musicUrlArr.push(myAudio.src = musicUrlArr.shift());
-		myAudio.addEventListener("ended",onPlayEndFunc,false);
+		myAudio.addEventListener("ended", onPlayEndFunc, false);
 		function onPlayEndFunc(){
 			console.log(musicUrlArr);
 			musicUrlArr.push(myAudio.src = musicUrlArr.shift());
-			myAudio.play();
 		}
-		function onLoadEndFunc(){
-			alert(myAudio.readyState);
-			window.addEventListener("touchstart",onTouchStart,false);
-			window.dispatchEvent(new Event("touchstart"));
-			myAudio.load();
+		var ua = navigator.userAgent.toLowerCase();
+		if((ua.indexOf("iphone") != -1 || ua.indexOf("ipad") != -1 || ua.indexOf("ipod") != -1)){
+			/**特殊处理iOS无法自动播放音乐（点击后才可播放）*/
+			window.addEventListener("touchstart", onTouchStart, false);
+			function onTouchStart(e){
+				alert("touch");
+				window.removeEventListener("touchstart", onTouchStart, false);
+				musicUrlArr.push(myAudio.src = musicUrlArr.shift());
+			}
+			/**特殊处理iOS无法自动播放音乐（仅微信可用）*/
+			document.addEventListener("WeixinJSBridgeReady", playWeixinAudio, false);
+			function playWeixinAudio(){
+				alert("weixin");
+				document.removeEventListener("WeixinJSBridgeReady", playWeixinAudio, false);
+				musicUrlArr.push(myAudio.src = musicUrlArr.shift());
+			}
+		}else{
 			musicUrlArr.push(myAudio.src = musicUrlArr.shift());
-			// myAudio.play();
-			myAudio.volume = 1;
-		}
-		function onTouchStart(e){
-			alert("touch");
-			musicUrlArr.push(myAudio.src = musicUrlArr.shift());
-			myAudio.load();
-			myAudio.play();
-
-		}
-		/**特殊处理iOS无法自动播放音乐（仅微信可用）*/
-		document.addEventListener("WeixinJSBridgeReady",playWeixinAudio,false);
-		function playWeixinAudio(){
-			myAudio.play();
-			document.removeEventListener("WeixinJSBridgeReady",playWeixinAudio,false);
 		}
 
 		/**进度文本和进度条显示*/
