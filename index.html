@@ -126,9 +126,27 @@
     </div>
 	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script> 
 	<script>
-		/**加载音乐(循环播放)*/
+		/**加载音乐(列表循环播放)*/
 		var musicUrlArr = ["resource/audio/short5.mp3","resource/audio/kongfu.mp3","resource/audio/market.mp3","resource/audio/playing.mp3"];
 		var myAudio = document.getElementById("bgMusic");
+		window.addEventListener("blur", stopPlayMusic, false);
+		function rePlayMusic(){
+			window.addEventListener("blur", stopPlayMusic, false);
+			window.removeEventListener("focus", rePlayMusic, false);
+			console.log("focus:"+myAudio.paused+","+myAudio.currentSrc);
+			if(myAudio.paused){
+				myAudio.load();
+				myAudio.play();
+			}
+		}
+		function stopPlayMusic(){
+			window.removeEventListener("blur", stopPlayMusic, false);
+			window.addEventListener("focus", rePlayMusic, false);
+			if(!myAudio.paused){
+				myAudio.pause();
+			}
+		}
+		musicUrlArr.push(myAudio.src = musicUrlArr.shift());
 		myAudio.addEventListener("ended", onPlayEndFunc, false);
 		function onPlayEndFunc(){
 			console.log(musicUrlArr);
@@ -141,17 +159,16 @@
 			function onTouchStart(e){
 				alert("touch");
 				window.removeEventListener("touchstart", onTouchStart, false);
-				musicUrlArr.push(myAudio.src = musicUrlArr.shift());
+				myAudio.load();
+				myAudio.play();
 			}
-			/**特殊处理iOS无法自动播放音乐（仅微信可用）*/
-			document.addEventListener("WeixinJSBridgeReady", playWeixinAudio, false);
-			function playWeixinAudio(){
-				alert("weixin");
-				document.removeEventListener("WeixinJSBridgeReady", playWeixinAudio, false);
-				musicUrlArr.push(myAudio.src = musicUrlArr.shift());
-			}
-		}else{
-			musicUrlArr.push(myAudio.src = musicUrlArr.shift());
+			// /**特殊处理iOS无法自动播放音乐（仅微信可用）*/
+			// document.addEventListener("WeixinJSBridgeReady", playWeixinAudio, false);
+			// function playWeixinAudio(){
+			// 	alert("weixin");
+			// 	document.removeEventListener("WeixinJSBridgeReady", playWeixinAudio, false);
+			// 	musicUrlArr.push(myAudio.src = musicUrlArr.shift());
+			// }
 		}
 
 		/**进度文本和进度条显示*/
