@@ -29,10 +29,47 @@
 
 class Main extends egret.DisplayObjectContainer {
 
-
-
     public constructor() {
         super();
+        //参考：https://blog.csdn.net/wangji5850/article/details/51180314?locationNum=6&fps=1；
+        //参考：https://segmentfault.com/a/1190000011041164
+        //参考：https://blog.csdn.net/u013451157/article/details/78686881
+        window.onerror = function(msg,url,line,col,error){
+            //没有URL不上报！上报也不知道错误
+            if (msg != "Script error." && !url){
+                return true;
+            }
+            //采用异步的方式
+            setTimeout(function(){
+                let data:any = {};
+                //不一定所有浏览器都支持col参数
+                col = col || (window.event && window.event["errorCharacter"]) || 0;
+        
+                data.url = url;
+                data.line = line;
+                data.col = col;
+                if (!!error && !!error.stack){
+                    //如果浏览器有堆栈信息
+                    //直接使用
+                    data.msg = error.stack.toString();
+                }else if (!!arguments.callee){
+                    //尝试通过callee拿堆栈信息
+                    let ext:Array<any> = [];
+                    let func:Function = arguments.callee;
+                    let i:number = 3;
+                    while (func && (--i > 0)) {
+                        ext.push(func.toString());
+                        if (func === func.caller) {
+                            break;//如果有循环
+                        }
+                        func = func.caller;
+                    }
+                    data.msg = data.url + data.line + data.col + ext.join(",");
+                }
+                Log.showError(data.msg);
+            },0);
+            return true;
+        };
         this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
     }
 
@@ -54,11 +91,16 @@ class Main extends egret.DisplayObjectContainer {
             egret.ticker.resume();
         }
 
-        this.runGame().catch(e => {
-            console.log(e);
+        this.runGame().catch(e => {//没有try_catch到的错误就交给window.onerror()处理，
+            let data:any = {};
+            //有堆栈信息就直接记录堆栈信息，没有就记录错误名字
+            if (!!e && !!e.stack){
+                data.msg = e.stack.toString();
+            }else{
+                data.msg = e;
+            }
+            Log.showError(data.msg);
         })
-
-
 
     }
     
@@ -71,46 +113,6 @@ class Main extends egret.DisplayObjectContainer {
         const userInfo = await platform.getUserInfo();
         console.log(userInfo);
 
-        let testA:any = new Object();
-        testA.i = 0;
-        let testB = testA;
-        testA.i = 3;
-        console.log(testB.i);//输出为3；
-
-        let testC:any = new Number(0);
-        let testD = testC;
-        testC = 3;
-        console.log(testD);//输出为0；
-
-
-        let sin1:com.demo.pattern.SingletonPatternDemo = com.demo.pattern.SingletonPatternDemo.instance;
-        sin1.data = [1,2];
-        let sin2:com.demo.pattern.SingletonPatternDemo = com.demo.pattern.SingletonPatternDemo.instance;
-        console.log(sin1,sin2);
-        egret.MainContext.deviceType;
-        var zip = new JSZip();
-    }
-    private addFor():void{
-
-    }
-    /**判断1,2,3,4哪个选项最少 */
-    private leastSelect(arr:Array<number>):number{
-        let a:any = new Object();
-        a.a1 = 0;
-        a.a2 = 0;
-        a.a3 = 0;
-        a.a4 = 0;
-        a.min = null;
-        for(let i:number=0; i<arr.length; i++){
-            a["a"+arr[i]]++;
-        }
-        a.min = 1;
-        for(let i:number=2; i<=4; i++){
-            if(a["a"+i] <= a["a"+a.min]){
-                a.min = i;
-            }
-        }
-        return a.min;
     }
 
     private async loadResource() {
@@ -122,7 +124,7 @@ class Main extends egret.DisplayObjectContainer {
             this.stage.removeChild(loadingView);
         }
         catch (e) {
-            console.error(e);
+            Log.showLog("Main.loadResource()_" + e);
         }
     }
 
