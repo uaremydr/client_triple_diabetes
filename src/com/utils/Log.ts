@@ -13,8 +13,7 @@ class Log {
 			if(Config.isDebug){//Debug版本错误日志直接弹出
 				alert(str);//弊端为如果一次报多个错误，会弹框很多，可以自己写报错面板解决问题；
 			}
-		}
-		catch (e) {
+		}catch (e) {
 			let txt: string = "Log.showError()_" + e.toString();
 			Log.showLog(txt);
 			if(Config.isDebug){

@@ -36,24 +36,41 @@
 			right: 0;
 			left: 0;
 			margin: auto;
-            /*transform: translateX(-50%);
-            transform: translateY(-50%);*/
         }
-        #progressbar {
-			z-index: 1001;
+		#progressbar {
+			z-index: 2;
 			position: absolute;
 			left: 0;
 			right: 0;
-			bottom: 15%;
-			max-width: 500px;
-			width: 80%;
-			height: 0;
-			padding-bottom: 11.4%;
+			bottom: 10%;
+			width: 300px;
+			height: 30px;
 			margin: auto;
-			overflow: hidden;
+			text-align: center;
+			color:orange;
+			border-radius: 25px;
+        	box-shadow: 0 0 2px 0px #eee;
+           	overflow: hidden;
         }
-		#progressTxt{
+		#progress {
 			z-index: 0;
+			position: absolute;
+			width: 100%;
+			height: 100%;       
+			background: linear-gradient(45deg, #2989d8 33%,#7db9e8 34%,#7db9e8 66%,#2989d8 67%);    
+			background-size: 60px 30px;
+			animation:load 3s ease-in;
+		}
+		@keyframes load{
+			0%{
+				width: 0%;
+			}
+			100%{
+				width:100%;
+			}
+		}
+		#progressTxt{
+			z-index: 1;
 			position: absolute;
 			top: 0;
 			right: 0;
@@ -63,41 +80,6 @@
 			width: 100%;
 			height: 28%;
 			font-size: 14px;
-			/*position: relative;
-			top: -50px;*/
-			/*margin-top: -30px;*/
-		}
-		#progressBorder{
-			position: absolute;
-			width: 100%;
-			height: 100%;
-			top: 0;
-			right: 0;
-			left: 0;
-			z-index: -1;
-		}
-		#progressContent{
-			position: absolute;
-			width: 100%;
-			height: 100%;
-			max-width: 500px;
-			max-height: 57px;
-			top: 0;
-			/*line-height: 169%;*/
-			text-align: center;
-			/*font-size: 16px;*/
-			color:red;
-		}
-		#progress {
-			position: absolute;
-			background-image: url("resource/loading/img_progressBar.png");
-			background-repeat: no-repeat;
-			background-size: 100% 100%;
-			width: 0px;
-			height: 35.1%;
-			top: 35.1%;
-			left: 5%;
-			z-index: -2;
 		}
     </style>
 </head>
@@ -106,12 +88,8 @@
 	<audio id="bgMusic" autoplay="autoplay"></audio>
     <div id="preloading"></div>
 	<div id="progressbar">
-		<div id='progressContent'>
-			<img id="progressBorder" src="resource/loading/img_progressBorder.png">
-			<!--<img id='progress' src="./loading/img_progressBar.png">-->
-			<div id='progress'></div>
-			<p id='progressTxt'></p>
-		</div>
+		<div id='progress'></div>
+		<p id='progressTxt'>加载中......</p>
 	</div>
     <div style="margin: auto;width: 100%;height: 100%;" class="egret-player"
          data-entry-class="Main"
@@ -173,7 +151,7 @@
 		myAudio.volume = 0;
 
 		/**进度文本和进度条显示*/
-		var progressfn = function (cent, info) {
+		var rateOfProgress = function (current, aggregate, info) {
 			var progressbar = document.getElementById("progressbar");
 			progressbar.innerHTML = info + ":" + cent + "%";
 			var progress = document.getElementById("progress");
@@ -183,6 +161,7 @@
 		var loadScript = function (list, callback) {
 			var loaded = 0;
 			var loadNext = function () {
+				// rateOfProgress(loaded, list.length, list[loaded]);//显示当前加载进度和加载文件
 				loadSingleScript(list[loaded], function () {
 					loaded++;
 					if (loaded >= list.length) {
@@ -191,7 +170,7 @@
 					else {
 						loadNext();
 					}
-				})
+				});
 			};
 			loadNext();
 		};

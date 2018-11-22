@@ -74,7 +74,7 @@ class Main extends egret.DisplayObjectContainer {
     }
 
     private onAddToStage(event: egret.Event) {
-
+        // this.stage.addEventListener(egret.Event.RESIZE, this.resizeHandler, this);
         egret.lifecycle.addLifecycleListener((context) => {
             // custom lifecycle plugin
 
@@ -107,7 +107,7 @@ class Main extends egret.DisplayObjectContainer {
     private async runGame() {
         await this.loadResource()
         this.createGameScene();
-        const result = await RES.getResAsync("description_json")
+        const result = await RES.getResAsync("description_json");
         this.startAnimation(result);
         await platform.login();
         const userInfo = await platform.getUserInfo();
@@ -117,9 +117,9 @@ class Main extends egret.DisplayObjectContainer {
 
     private async loadResource() {
         try {
+            await RES.loadConfig("resource/default.res.json", "resource/");
             const loadingView = new LoadingUI();
             this.stage.addChild(loadingView);
-            await RES.loadConfig("resource/default.res.json", "resource/");
             await RES.loadGroup("preload", 0, loadingView);
             this.stage.removeChild(loadingView);
         }
@@ -225,6 +225,16 @@ class Main extends egret.DisplayObjectContainer {
             tw.to({ "alpha": 0 }, 200);
             tw.call(change, this);
         };
+        // var zip = new JSZip();
+        // zip.file("Hello.txt", "Hello World\n");
+        // // 创建images文件夹
+        // var img = zip.folder("images");
+        // // 二进制数据
+        // var imgData = "R0lGODdhBQAFAIACAAAAAP/eACwAAAAABQAFAAACCIwPkWerClIBADs=";
+        // img.file("smile.gif", imgData, { base64: true });
+        // zip.generateAsync({ type: "blob" }).then((blob) => {
+        //     saveAs(blob, "example.zip")
+        // })
 
         change();
     }
