@@ -16,6 +16,7 @@
 		"bin-debug/Platform.js",
 		"bin-debug/com/data/CenterTemplate.js",
 		"bin-debug/com/utils/Config.js",
+		"bin-debug/com/utils/Global.js",
 		"bin-debug/com/utils/Log.js",
 		"bin-debug/com/view/ViewTemplate.js",
 		"bin-debug/demo/pattern/SingletonPatternDemo.js"
