@@ -28,24 +28,56 @@
 //////////////////////////////////////////////////////////////////////////////////////
 
 class LoadingUI extends egret.Sprite implements RES.PromiseTaskReporter {
-
-    public constructor() {
+    private constructor() {
         super();
         this.createView();
     }
+    /**实例 */
+    private static _instance:LoadingUI;
+    /**获取实例 */
+    public static get instance():LoadingUI{
+        if(!this._instance){
+            this._instance = new LoadingUI();
+        }
+        return this._instance;
+    }
 
-    private textField: egret.TextField;
+    // private textField: egret.TextField;
+    private preloading:HTMLElement;
+    private progressbar:HTMLElement;
+    private progressNum:HTMLElement;
+    private progressTxt:HTMLElement;
+
 
     private createView(): void {
-        this.textField = new egret.TextField();
-        this.addChild(this.textField);
-        this.textField.y = 300;
-        this.textField.width = 480;
-        this.textField.height = 100;
-        this.textField.textAlign = "center";
+        this.preloading = document.getElementById("preloading");
+        this.progressbar = document.getElementById("progressbar");
+        this.progressNum = document.getElementById("progressNum");
+        this.progressTxt = document.getElementById("progressTxt");
     }
 
     public onProgress(current: number, total: number): void {
-        this.textField.text = `Loading...${current}/${total}`;
+        // this.progressTxt.innerHTML = "Loading..." + current + "/" + total;
+        this.progressTxt.innerHTML = com.utils.StringFormatUtils.replaceStr("Loading...{0}/{1}",[current, total]);
+		this.progressNum.style.width = current / total * 100 + "%";
+    }
+
+    public clearProgress():void{
+        if(this.preloading){
+			this.preloading.style.display = "none";
+            this.preloading = null;
+        }
+        if(this.progressbar){
+			this.progressbar.style.display = "none";
+            this.progressbar = null;
+        }
+        if(this.progressNum){
+			this.progressNum.style.display = "none";
+            this.progressNum = null;
+        }
+        if(this.progressTxt){
+			this.progressTxt.style.display = "none";
+            this.progressTxt = null;
+        }
     }
 }

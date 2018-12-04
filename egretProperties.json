@@ -31,6 +31,10 @@
     {
       "name": "jszip",
       "path": "./libs/jszip"
+    },
+    {
+      "name": "fairygui",
+      "path": "./libs/fairygui"
     }
   ]
 }

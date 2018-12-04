@@ -8,17 +8,20 @@
 		"libs/modules/socket/socket.js",
 		"libs/modules/promise/promise.js",
 		"libs/greensock/greensock.js",
-		"libs/jszip/jszip.js"
+		"libs/jszip/jszip.js",
+		"libs/fairygui/fairygui.js"
 	],
 	"game": [
+		"bin-debug/com/utils/Global.js",
 		"bin-debug/LoadingUI.js",
-		"bin-debug/Main.js",
 		"bin-debug/Platform.js",
 		"bin-debug/com/data/CenterTemplate.js",
 		"bin-debug/com/utils/Config.js",
-		"bin-debug/com/utils/Global.js",
+		"bin-debug/Main.js",
 		"bin-debug/com/utils/Log.js",
+		"bin-debug/com/utils/StringFormatUtils.js",
 		"bin-debug/com/view/ViewTemplate.js",
+		"bin-debug/com/view/base/BasePanel.js",
 		"bin-debug/demo/pattern/SingletonPatternDemo.js"
 	]
 }
