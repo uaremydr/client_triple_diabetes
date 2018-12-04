@@ -21,7 +21,7 @@
 		"bin-debug/com/utils/Log.js",
 		"bin-debug/com/utils/StringFormatUtils.js",
 		"bin-debug/com/view/ViewTemplate.js",
-		"bin-debug/com/view/base/BasePanel.js",
+		"bin-debug/com/view/base/BaseSprite.js",
 		"bin-debug/demo/pattern/SingletonPatternDemo.js"
 	]
 }
