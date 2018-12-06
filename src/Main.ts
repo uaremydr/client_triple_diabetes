@@ -92,14 +92,7 @@ class Main extends egret.DisplayObjectContainer {
         }
 
         this.runGame().catch(e => {//没有try_catch到的错误就交给window.onerror()处理，
-            let data:any = {};
-            //有堆栈信息就直接记录堆栈信息，没有就记录错误名字
-            if (!!e && !!e.stack){
-                data.msg = e.stack.toString();
-            }else{
-                data.msg = e;
-            }
-            Log.showError(data.msg);
+            Log.showError(e);
         })
 
     }
@@ -121,7 +114,7 @@ class Main extends egret.DisplayObjectContainer {
             this.stage.removeChild(loadingView);
         }
         catch (e) {
-            Log.showLog("Main.loadResource()_" + e);
+            Log.showError(e);
         }
     }
 

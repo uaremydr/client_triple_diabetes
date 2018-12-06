@@ -5,7 +5,7 @@ class Log {
 	//显示报错
 	public static showError(args:any):void{
 		try {
-			egret.error("Log_Error：", args);
+			egret.error(args);
 			let str: string = "Error Start.\n" + args + "\nError End.";
 			if(Config.isRelease){//Releas版的错误日志要上报后端
 				
@@ -15,7 +15,7 @@ class Log {
 			}
 		}catch (e) {
 			let txt: string = "Log.showError()_" + e.toString();
-			Log.showLog(txt);
+			egret.error(txt);
 			if(Config.isDebug){
 				alert(txt);
 			}
@@ -23,11 +23,15 @@ class Log {
 	}
 	//显示警告
 	public static showWarn(args:any):void{
-		egret.warn("Log_Warn：", args);
+		egret.warn(args);
 	}
 	//显示日志(记录步骤的时候使用，主要在调用异步方法或库方法时反馈脚印)
 	public static showLog(args:any):void{
-		egret.log("Log_Log: ", args);
+		egret.log(args);
+	}
+	/**输出到控制台 */
+	public static consoleLog(args:any):void{
+		console.log(args);
 	}
 
 }

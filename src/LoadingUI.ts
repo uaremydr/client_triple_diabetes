@@ -79,5 +79,16 @@ class LoadingUI extends egret.Sprite implements RES.PromiseTaskReporter {
 			this.progressTxt.style.display = "none";
             this.progressTxt = null;
         }
+        //测试HashMap
+        // let map:com.extend.HashMap<string, Object> = new com.extend.HashMap<string, Object>();
+        // map.put("0", {type:0});
+        // map.put("1", {type:1});
+        // map.put("2", {type:2});
+        // let cloneMap:com.extend.HashMap<string, Object> = map.clone();
+        // Log.consoleLog(cloneMap);
+        // let obj2:Object = cloneMap.get("2");
+        // obj2["type"] = 3;
+        // Log.consoleLog(map);
+        // Log.consoleLog(cloneMap);
     }
 }
