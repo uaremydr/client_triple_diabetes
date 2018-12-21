@@ -12,22 +12,20 @@
 		"libs/fairygui/fairygui.js"
 	],
 	"game": [
-		"bin-debug/com/utils/Log.js",
-		"bin-debug/LoadingUI.js",
-		"bin-debug/Platform.js",
-		"bin-debug/com/data/CenterTemplate.js",
-		"bin-debug/com/extend/Entry.js",
 		"bin-debug/com/extend/HashMap.js",
+		"bin-debug/com/data/center/CenterBase.js",
 		"bin-debug/com/utils/Config.js",
-		"bin-debug/com/utils/Global.js",
+		"bin-debug/com/data/CenterTemplate.js",
+		"bin-debug/LoadingUI.js",
+		"bin-debug/com/extend/Entry.js",
+		"bin-debug/Platform.js",
 		"bin-debug/Main.js",
+		"bin-debug/com/utils/Global.js",
+		"bin-debug/com/utils/Log.js",
 		"bin-debug/com/utils/StringFormatUtils.js",
 		"bin-debug/com/view/ViewTemplate.js",
 		"bin-debug/com/view/base/MBaseContainer.js",
-		"bin-debug/demo/article/Article.js",
-		"bin-debug/demo/article/Classify.js",
-		"bin-debug/demo/article/Entrance.js",
-		"bin-debug/demo/article/EnumArticle.js",
+		"bin-debug/com/view/main/MainStage.js",
 		"bin-debug/demo/pattern/SingletonPatternDemo.js"
 	]
 }

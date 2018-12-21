@@ -18,7 +18,7 @@ module com.extend {
 			return map;
 		}
 		/**获取长度 */
-		public get length():number{
+		public get size():number{
 			return this._list.length;
 		}
 		/**是否存在当前键 */
@@ -32,16 +32,16 @@ module com.extend {
 			return i != -1;
 		}
 		/**移除键值对 */
-		public remove(k:K):Entry<K, V>{
+		public remove(k:K):V{
 			let i:number = this.getIndexByKey(k);
 			if(i != -1){
 				let d:Entry<K, V> = this._list.splice(i, 1)[0];
-				return d;
+				return d.val;
 			}
 			return null;
 		}
 		/**添加键值对 */
-		public put(k:K, v:V):void{
+		public put(k:K, v:V):V{
 			let d:Entry<K, V> = new Entry<K, V>();
 			d.key = k;
 			d.val = v;
@@ -51,6 +51,7 @@ module com.extend {
 			}else{//如果存在，则刷新值
 				this._list[i] = d;
 			}
+			return d.val;
 		}
 		/**根据key值获取val值 */
 		public get(k:K):V{
@@ -63,6 +64,13 @@ module com.extend {
 				}
 			}
 			return null;
+		}
+		/**是否为空 */
+		public isEmpty():boolean{
+			if(this._list && this._list.length > 0){
+				return false;
+			}
+			return true;
 		}
 		/**根据key值获取index值 */
 		private getIndexByKey(k:K):number{

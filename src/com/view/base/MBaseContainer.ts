@@ -13,14 +13,14 @@ module com.view.base {
 		// 	}
 		// 	this._eventArr.push();
 		// }
-		/**添加原生（白鹭）显示对象 */
+		/**添加原生显示对象 */
 		public addProtoChild(child:egret.DisplayObject):boolean{
 			if(child && this._rootContainer.addChild(child)){
 				return true;
 			}
 			return false;
 		}
-		/**移除原生（白鹭）显示对象 */
+		/**移除原生显示对象 */
 		public removeProtoChild(child:egret.DisplayObject):boolean{
 			if(child && this._rootContainer.removeChild(child)){
 				return true;

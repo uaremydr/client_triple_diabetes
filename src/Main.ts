@@ -27,6 +27,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 
+import MainStage = com.view.main.MainStage;
 class Main extends egret.DisplayObjectContainer {
 
     public constructor() {
@@ -92,7 +93,11 @@ class Main extends egret.DisplayObjectContainer {
         }
 
         this.runGame().catch(e => {//没有try_catch到的错误就交给window.onerror()处理，
-            Log.showError(e);
+            if(e.stack){
+                Log.showError(e.stack.toString());
+            }else{
+                Log.showError(e);
+            }
         })
 
     }
@@ -114,17 +119,21 @@ class Main extends egret.DisplayObjectContainer {
             this.stage.removeChild(loadingView);
         }
         catch (e) {
-            Log.showError(e);
+            if(e.stack){
+                Log.showError(e.stack.toString());
+            }else{
+                Log.showError(e);
+            }
         }
     }
-
 
     /**
      * 创建游戏场景
      * Create a game scene
      */
     private createGameScene() {
-        
+        let mainStage:MainStage = new MainStage();
+        this.addChild(mainStage);
     }
 
 }
