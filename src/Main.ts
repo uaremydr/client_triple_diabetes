@@ -28,6 +28,8 @@
 //////////////////////////////////////////////////////////////////////////////////////
 
 import MainStage = com.view.main.MainStage;
+import PanelRegister = com.common.PanelRegister;
+
 class Main extends egret.DisplayObjectContainer {
 
     public constructor() {
@@ -104,6 +106,7 @@ class Main extends egret.DisplayObjectContainer {
     
     private async runGame() {
         Global.init(this);//初始化全局数据
+        PanelRegister.instance.registerPanelInfo();
         await this.loadResource();
         this.createGameScene();
 
@@ -133,7 +136,6 @@ class Main extends egret.DisplayObjectContainer {
      */
     private createGameScene() {
         let mainStage:MainStage = new MainStage();
-        this.addChild(mainStage);
     }
 
 }
