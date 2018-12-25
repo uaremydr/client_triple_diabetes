@@ -2,7 +2,7 @@ module com.view.main {
 	import GObject = fairygui.GObject;
 	import GRoot = fairygui.GRoot;
 	import DisplayObject = egret.DisplayObject;
-	// import DisplayObjectContainer = egret.DisplayObjectContainer;
+	import PanelUtils = com.utils.PanelUtils;
 	
 	export class MainStage{
 		/**fairygui舞台 */
@@ -15,6 +15,7 @@ module com.view.main {
 		private init():void{
 			this.guiStage = GRoot.inst.displayObject;
 			Global.stage.addChild(this.guiStage);
+			PanelUtils.openPanelById(TypePanelId.LOGIN);
 		}
 	}
 }

@@ -17,20 +17,17 @@ module com.common {
 		private constructor() {
 		}
 		/**面板信息 */
-		private panelInfoMap:HashMap<string, PanelInfo>;
+		private panelInfoMap:HashMap<string, PanelInfo> = new HashMap<string, PanelInfo>();
 
 		/**注册面板信息 */
 		public registerPanelInfo():void{
-			this.registerInfo(StaticPanelId.LOGIN, new PanelInfo(StaticPanelId.LOGIN, LoginPanel, "common"));
+			this.registerInfo(TypePanelId.LOGIN, new PanelInfo(TypePanelId.LOGIN, LoginPanel, "common"));
 		}
 		private registerInfo(panelId:string, panelInfo:PanelInfo):void{
-			if(!this.panelInfoMap){
-				this.panelInfoMap = new HashMap<string, PanelInfo>();
-			}
 			this.panelInfoMap.put(panelId, panelInfo);
 		}
 		/**根据面板id获取面板信息 */
-		public getInfoById(panelId:string):PanelInfo{
+		public getPanelInfoById(panelId:string):PanelInfo{
 			return this.panelInfoMap.get(panelId);
 		}
 

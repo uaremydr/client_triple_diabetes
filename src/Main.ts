@@ -106,7 +106,7 @@ class Main extends egret.DisplayObjectContainer {
     
     private async runGame() {
         Global.init(this);//初始化全局数据
-        PanelRegister.instance.registerPanelInfo();
+        PanelRegister.instance.registerPanelInfo();//注册面板信息
         await this.loadResource();
         this.createGameScene();
 
