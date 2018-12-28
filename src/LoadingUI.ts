@@ -79,35 +79,6 @@ class LoadingUI extends egret.Sprite implements RES.PromiseTaskReporter {
 			this.progressTxt.style.display = "none";
             this.progressTxt = null;
         }
-        // 测试HashMap
-        // let map:com.extend.HashMap<string, Object> = new com.extend.HashMap<string, Object>();
-        // Log.consoleLog(map.isEmpty());
-        // map.put("0", {type:0});
-        // map.put("1", {type:1});
-        // map.put("2", {type:2});
-        // Log.consoleLog(map.isEmpty());
-        // Log.consoleLog(map);
-        // map.put("2", {type:3});
-        // Log.consoleLog(map);
-        // Log.consoleLog(map.size);
-        // Log.consoleLog(map.containsKey("1"));
-        // Log.consoleLog(map.containsKey("4"));
-        // let obj0:Object = map.get("0");
-        // Log.consoleLog(map.containsValue(obj0));
-        // Log.consoleLog(map.containsValue({type:4}));
-        // let cloneMap:com.extend.HashMap<string, Object> = map.clone();
-        // Log.consoleLog(cloneMap);
-        // let obj2:Object = cloneMap.get("1");
-        // Log.consoleLog(obj2);
-        // obj2["type"] = 2;
-        // Log.consoleLog(map);
-        // Log.consoleLog(cloneMap);
-        // cloneMap.remove("3");
-        // cloneMap.remove("2");
-        // Log.consoleLog(cloneMap);
-        // Log.consoleLog(cloneMap.clear());
-        // Log.consoleLog(cloneMap);
-        // Log.consoleLog(map);
 
     }
 }

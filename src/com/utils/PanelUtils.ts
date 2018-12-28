@@ -3,6 +3,7 @@ module com.utils {
 	import HashMap = com.extend.HashMap;
 	import GRoot = fairygui.GRoot;
 	import UIPackage = fairygui.UIPackage;
+	import LanguageUtils = com.utils.LanguageUtils;
 
 	export class PanelUtils {
 		public constructor() {
@@ -14,18 +15,21 @@ module com.utils {
 			let panelInfo:PanelInfo = PanelRegister.instance.getPanelInfoById(panelId);
 			if(panelInfo.panelGroup){
 				let group:string = panelInfo.panelGroup;
-				if(!RES.getGroupByName(group)){
-					let groupLoader:GroupLoader = new GroupLoader();
-					groupLoader.loadGroup(group, this.onGroupLoadComplete, this, panelInfo);
-					return;
+				if(RES.getGroupByName(group)){
+					if(RES.getGroupByName(group).length > 0){
+						this.onGroupLoadComplete(panelInfo);
+					}else{
+						//当前group不存在
+						Log.showWarn("PanelUtils.openPanelById():" + LanguageUtils.getLang("PanelUtils_1", [group]));
+					}
 				}else{
-					this.onGroupLoadComplete(panelInfo);
+					GroupLoader.instance.loadGroup(group, this.onGroupLoadComplete, this, panelInfo);
 				}
 			}
 		}
 		/**group加载完成 */
-		private static onGroupLoadComplete(args?:any):void{
-			let panelInfo:PanelInfo = args as PanelInfo;
+		private static onGroupLoadComplete(info:any):void{
+			let panelInfo:PanelInfo = info as PanelInfo;
 			let panel:any = this.panelInstMap.get(panelInfo.panelId);
 			if(!panel){
 				let cls:any = panelInfo.panelClass;

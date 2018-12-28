@@ -3,6 +3,7 @@ module com.view.main {
 	import GRoot = fairygui.GRoot;
 	import DisplayObject = egret.DisplayObject;
 	import PanelUtils = com.utils.PanelUtils;
+	import TypePanelId = com.type.TypePanelId;
 	
 	export class MainStage{
 		/**fairygui舞台 */

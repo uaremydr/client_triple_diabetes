@@ -1,7 +1,8 @@
-module com.common {
+module com.utils {
 	import PanelInfo = com.data.PanelInfo;
 	import LoginPanel = com.view.login.LoginPanel;
 	import HashMap = com.extend.HashMap;
+	import TypePanelId = com.type.TypePanelId;
 
 	export class PanelRegister {
 		/**实例 */

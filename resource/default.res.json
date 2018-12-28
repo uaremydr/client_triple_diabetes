@@ -1,8 +1,12 @@
 {
 	"groups": [
 		{
-			"keys": "bg_jpg,egret_icon_png,description_json",
+			"keys": "bg_jpg,egret_icon_png",
 			"name": "preload"
+		},
+		{
+			"keys": "",
+			"name": "common"
 		}
 	],
 	"resources": [
@@ -17,9 +21,64 @@
 			"name": "egret_icon_png"
 		},
 		{
-			"url": "config/description.json",
+			"url": "config/language_zh_CN.json",
 			"type": "json",
-			"name": "description_json"
+			"name": "language_zh_CN_json"
+		},
+		{
+			"url": "loading/apple-touch-icon-ipad.png",
+			"type": "image",
+			"name": "apple-touch-icon-ipad_png"
+		},
+		{
+			"url": "loading/apple-touch-icon-iphone.png",
+			"type": "image",
+			"name": "apple-touch-icon-iphone_png"
+		},
+		{
+			"url": "loading/apple-touch-icon-iphone4.png",
+			"type": "image",
+			"name": "apple-touch-icon-iphone4_png"
+		},
+		{
+			"url": "loading/img_progressBar.png",
+			"type": "image",
+			"name": "img_progressBar_png"
+		},
+		{
+			"url": "loading/img_progressBorder.png",
+			"type": "image",
+			"name": "img_progressBorder_png"
+		},
+		{
+			"url": "loading/loading_1.gif",
+			"type": "image",
+			"name": "loading_1_gif"
+		},
+		{
+			"url": "loading/loading_2.gif",
+			"type": "image",
+			"name": "loading_2_gif"
+		},
+		{
+			"url": "loading/loading_3.gif",
+			"type": "image",
+			"name": "loading_3_gif"
+		},
+		{
+			"url": "loading/loading_4.gif",
+			"type": "image",
+			"name": "loading_4_gif"
+		},
+		{
+			"url": "loading/loading_5.gif",
+			"type": "image",
+			"name": "loading_5_gif"
+		},
+		{
+			"url": "loading/loading_6.gif",
+			"type": "image",
+			"name": "loading_6_gif"
 		}
 	]
 }

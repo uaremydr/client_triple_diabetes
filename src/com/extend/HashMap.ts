@@ -2,7 +2,7 @@ module com.extend {
 	/**简易HashMap泛型实现 */
 	export class HashMap<K, V> {
 		/**存储列表 */
-		private _list:Entry<K, V>[];
+		private _list:HashMapEntry<K, V>[];
 		public constructor() {
 			this.clear();
 		}
@@ -11,7 +11,7 @@ module com.extend {
 			let map:HashMap<K, V> = new HashMap<K, V>();
 			if(this._list && this._list.length > 0){
 				for(let i in this._list){
-					let e:Entry<K, V> = this._list[i];
+					let e:HashMapEntry<K, V> = this._list[i];
 					map.put(e.key, e.val);
 				}
 			}
@@ -35,14 +35,14 @@ module com.extend {
 		public remove(k:K):V{
 			let i:number = this.getIndexByKey(k);
 			if(i != -1){
-				let d:Entry<K, V> = this._list.splice(i, 1)[0];
+				let d:HashMapEntry<K, V> = this._list.splice(i, 1)[0];
 				return d.val;
 			}
 			return null;
 		}
 		/**添加键值对 */
 		public put(k:K, v:V):V{
-			let d:Entry<K, V> = new Entry<K, V>();
+			let d:HashMapEntry<K, V> = new HashMapEntry<K, V>();
 			d.key = k;
 			d.val = v;
 			let i:number = this.getIndexByKey(k);
@@ -57,7 +57,7 @@ module com.extend {
 		public get(k:K):V{
 			if(this._list && this._list.length > 0){
 				for(let i in this._list){
-					let e:Entry<K, V> = this._list[i];
+					let e:HashMapEntry<K, V> = this._list[i];
 					if(e.key == k){
 						return e.val;
 					}
@@ -76,7 +76,7 @@ module com.extend {
 		private getIndexByKey(k:K):number{
 			if(this._list && this._list.length > 0){
 				for(let i in this._list){
-					let e:Entry<K, V> = this._list[i];
+					let e:HashMapEntry<K, V> = this._list[i];
 					if(e.key == k){
 						return Number(i);
 					}
@@ -88,7 +88,7 @@ module com.extend {
 		private getIndexByValue(v:V):number{
 			if(this._list && this._list.length > 0){
 				for(let i in this._list){
-					let e:Entry<K, V> = this._list[i];
+					let e:HashMapEntry<K, V> = this._list[i];
 					if(e.val == v){
 						return Number(i);
 					}

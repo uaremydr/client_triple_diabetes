@@ -1,5 +1,17 @@
 module com.utils {
 	export class GroupLoader {
+		/**实例 */
+		private static _instance:GroupLoader;
+		/**获取实例 */
+		public static get instance():GroupLoader{
+			if(!this._instance){
+				this._instance = new GroupLoader();
+			}
+			return this._instance;
+		}
+		/**必须为私有构造方法 */
+		private constructor() {
+		}
 		/**加载group名字 */
 		private _groupName:string;
 		/**加载完成返回方法 */
@@ -14,7 +26,7 @@ module com.utils {
 			RES.addEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onResourceLoadError, this);
 			RES.addEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);
 			RES.addEventListener(RES.ResourceEvent.ITEM_LOAD_ERROR, this.onItemLoadError, this);
-			this._groupName = groupName;
+			this._groupName = groupName;//此处记录加载group名，目的是只执行最近加载的group完成后的调用方法
 			this._completeFunc = completeFunc;
 			this._thisObject = thisObject;
 			this._completeFuncArg = completeFuncArg;
@@ -30,7 +42,7 @@ module com.utils {
 			}
 		}
 		private onResourceLoadError(event:RES.ResourceEvent):void {
-			Log.showWarn("Group:" + event.groupName + " has failed to load");
+			Log.showWarn("GroupLoader.onResourceLoadError():" + event.groupName + " has failed to load");
 			//跳过当前错误加载
 			this.onResourceLoadComplete(event);
 		}
@@ -41,7 +53,7 @@ module com.utils {
 		}
 
 		private onItemLoadError(event:RES.ResourceEvent):void {
-			Log.showWarn("Url:" + event.resItem.url + " has failed to load");
+			Log.showWarn("GroupLoader.onItemLoadError():" + event.resItem.url + " has failed to load");
 		}
 
 	}

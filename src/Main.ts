@@ -28,7 +28,8 @@
 //////////////////////////////////////////////////////////////////////////////////////
 
 import MainStage = com.view.main.MainStage;
-import PanelRegister = com.common.PanelRegister;
+import PanelRegister = com.utils.PanelRegister;
+import LanguageUtils = com.utils.LanguageUtils;
 
 class Main extends egret.DisplayObjectContainer {
 
@@ -106,10 +107,8 @@ class Main extends egret.DisplayObjectContainer {
     
     private async runGame() {
         Global.init(this);//初始化全局数据
-        PanelRegister.instance.registerPanelInfo();//注册面板信息
         await this.loadResource();
-        this.createGameScene();
-
+        LanguageUtils.initLang(this.createGameScene, this);
     }
 
     private async loadResource() {
@@ -135,6 +134,7 @@ class Main extends egret.DisplayObjectContainer {
      * Create a game scene
      */
     private createGameScene() {
+        PanelRegister.instance.registerPanelInfo();//注册面板信息
         let mainStage:MainStage = new MainStage();
     }
 
