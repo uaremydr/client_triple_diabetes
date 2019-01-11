@@ -36,6 +36,7 @@ module com.data.center {
 			}
 			if(this._isLoad){
 				Log.showWarn("CenterLanguage.init():language is loading");
+				return;
 			}
 			this._currRes = res;
 			try{

@@ -3,6 +3,7 @@ module com.utils {
 	import LoginPanel = com.view.login.LoginPanel;
 	import HashMap = com.extend.HashMap;
 	import TypePanelId = com.type.TypePanelId;
+	import TypeContainer = com.type.TypeContainer;
 
 	export class PanelRegister {
 		/**实例 */
@@ -22,7 +23,7 @@ module com.utils {
 
 		/**注册面板信息 */
 		public registerPanelInfo():void{
-			this.registerInfo(TypePanelId.LOGIN, new PanelInfo(TypePanelId.LOGIN, LoginPanel, "common"));
+			this.registerInfo(TypePanelId.LOGIN, new PanelInfo(TypePanelId.LOGIN, LoginPanel, "common", TypeContainer.BOTTOM));
 		}
 		private registerInfo(panelId:string, panelInfo:PanelInfo):void{
 			this.panelInfoMap.put(panelId, panelInfo);

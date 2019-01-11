@@ -108,7 +108,7 @@ class Main extends egret.DisplayObjectContainer {
     private async runGame() {
         Global.init(this);//初始化全局数据
         await this.loadResource();
-        LanguageUtils.initLang(this.createGameScene, this);
+        LanguageUtils.initLang("resource/config/language_zh_CN.json", this.createGameScene, this);
     }
 
     private async loadResource() {

@@ -8,6 +8,7 @@ module com.view.main {
 	export class MainStage{
 		/**fairygui舞台 */
 		private guiStage:DisplayObject;
+		/** */
 
 		public constructor() {
 			this.init();

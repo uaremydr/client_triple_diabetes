@@ -23,7 +23,7 @@ module com.utils {
 		 * 加载语言包
 		 * 可用于加载国际化语言
 		 */
-		public static initLang(compFunc:Function, thisObject:any, res:string = "resource/config/language_zh_CN.json"):void{
+		public static initLang(res:string, compFunc:Function, thisObject:any):void{
 			CenterLanguage.instance.init(res, compFunc, thisObject);
 		}
 	}
