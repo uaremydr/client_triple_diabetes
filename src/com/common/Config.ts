@@ -1,4 +1,7 @@
 class Config {
+	/**
+	 * 主要用于存储开发者配置
+	 */
 	private constructor() {
 	}
 	//是否为debug模式

@@ -1,5 +1,6 @@
 module com.utils {
 	import CenterLanguage = com.data.center.CenterLanguage;
+	import LoaderInfo = com.data.info.LoaderInfo;
 
 	export class LanguageUtils {
 		private constructor() {
@@ -10,7 +11,7 @@ module com.utils {
 			if(str){
 				return str = StringFormatUtils.replaceStr(str, args);
 			}else{
-				str = CenterLanguage.instance.getLang("CenterLanguage_1");
+				str = CenterLanguage.instance.getLang("LanguageUtils_1");
 				if(str){
 					Log.showWarn("LanguageUtils.getLang():" + StringFormatUtils.replaceStr(str, [CenterLanguage.instance.currRes]));
 				}else{
@@ -23,8 +24,8 @@ module com.utils {
 		 * 加载语言包
 		 * 可用于加载国际化语言
 		 */
-		public static initLang(res:string, compFunc:Function, thisObject:any):void{
-			CenterLanguage.instance.init(res, compFunc, thisObject);
+		public static initLang(info:LoaderInfo):void{
+			CenterLanguage.instance.init(info);
 		}
 	}
 }

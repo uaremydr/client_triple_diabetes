@@ -1,5 +1,5 @@
 module com.extend {
-	export class HashMapEntry<K, V> {
+	export class MapEntry<K, V> {
 		public constructor() {
 		}
 		private _key:K;

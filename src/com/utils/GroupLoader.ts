@@ -1,4 +1,6 @@
 module com.utils {
+	import LoaderInfo = com.data.info.LoaderInfo;
+
 	export class GroupLoader {
 		/**实例 */
 		private static _instance:GroupLoader;
@@ -12,33 +14,24 @@ module com.utils {
 		/**必须为私有构造方法 */
 		private constructor() {
 		}
-		/**加载group名字 */
-		private _groupName:string;
-		/**加载完成返回方法 */
-		private _completeFunc:Function;
-		/**返回对象 */
-		private _thisObject:any;
-		/**返回参数 */
-		private _completeFuncArg:any;
+		/**加载资源信息 */
+		private _info:LoaderInfo;
 		/**加载group */
-		public loadGroup(groupName:string, completeFunc:Function, thisObject:any, completeFuncArg?:any){
+		public loadGroup(info:LoaderInfo){
 			RES.addEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
 			RES.addEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onResourceLoadError, this);
 			RES.addEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);
 			RES.addEventListener(RES.ResourceEvent.ITEM_LOAD_ERROR, this.onItemLoadError, this);
-			this._groupName = groupName;//此处记录加载group名，目的是只执行最近加载的group完成后的调用方法
-			this._completeFunc = completeFunc;
-			this._thisObject = thisObject;
-			this._completeFuncArg = completeFuncArg;
-			RES.loadGroup(groupName);
+			this._info = info;
+			RES.loadGroup(info.url);
 		}
 		private onResourceLoadComplete(event:RES.ResourceEvent):void {
-			if (event.groupName == this._groupName) {
+			if(event.groupName == this._info.url){
 				RES.removeEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
 				RES.removeEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onResourceLoadError, this);
 				RES.removeEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);
 				RES.removeEventListener(RES.ResourceEvent.ITEM_LOAD_ERROR, this.onItemLoadError, this);
-				this._completeFunc.apply(this._thisObject, this._completeFuncArg);
+				this._info.completeFunc.apply(this._info.thisObject, this._info.argsArray);
 			}
 		}
 		private onResourceLoadError(event:RES.ResourceEvent):void {
@@ -48,7 +41,7 @@ module com.utils {
 		}
 
 		private onResourceProgress(event:RES.ResourceEvent):void {
-			if (event.groupName == this._groupName) {
+			if (event.groupName == this._info.url){
 			}
 		}
 

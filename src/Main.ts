@@ -27,9 +27,6 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 
-import MainStage = com.view.main.MainStage;
-import PanelRegister = com.utils.PanelRegister;
-import LanguageUtils = com.utils.LanguageUtils;
 
 class Main extends egret.DisplayObjectContainer {
 
@@ -108,14 +105,14 @@ class Main extends egret.DisplayObjectContainer {
     private async runGame() {
         Global.init(this);//初始化全局数据
         await this.loadResource();
-        LanguageUtils.initLang("resource/config/language_zh_CN.json", this.createGameScene, this);
+        com.utils.LanguageUtils.initLang(new com.data.info.LoaderInfo("resource/config/language_zh_CN.json", this.createGameScene, this));
     }
 
     private async loadResource() {
         try {
             await RES.loadConfig("resource/default.res.json", "resource/");
             let loadingView:LoadingUI = LoadingUI.instance;
-            Global.stage.addChild(loadingView);
+            Global.gStage.addChild(loadingView);
             await RES.loadGroup("preload", 0, loadingView);
             loadingView.clearProgress();
             this.stage.removeChild(loadingView);
@@ -134,8 +131,9 @@ class Main extends egret.DisplayObjectContainer {
      * Create a game scene
      */
     private createGameScene() {
-        PanelRegister.instance.registerPanelInfo();//注册面板信息
-        let mainStage:MainStage = new MainStage();
+        com.utils.PanelRegister.instance.registerPanelInfo();//注册面板信息
+        let mainStage:com.view.main.MainStage = new com.view.main.MainStage();
+        com.utils.PanelUtils.initCommonResource();
     }
 
 }

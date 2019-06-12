@@ -1,17 +1,17 @@
 module com.extend {
-	/**简易HashMap泛型实现 */
-	export class HashMap<K, V> {
+	/**简易Map泛型实现 */
+	export class Map<K, V> {
 		/**存储列表 */
-		private _list:HashMapEntry<K, V>[];
+		private _list:MapEntry<K, V>[];
 		public constructor() {
 			this.clear();
 		}
 		/**clone复制当前对象 */
-		public clone():HashMap<K, V>{
-			let map:HashMap<K, V> = new HashMap<K, V>();
+		public clone():Map<K, V>{
+			let map:Map<K, V> = new Map<K, V>();
 			if(this._list && this._list.length > 0){
 				for(let i in this._list){
-					let e:HashMapEntry<K, V> = this._list[i];
+					let e:MapEntry<K, V> = this._list[i];
 					map.put(e.key, e.val);
 				}
 			}
@@ -35,14 +35,14 @@ module com.extend {
 		public remove(k:K):V{
 			let i:number = this.getIndexByKey(k);
 			if(i != -1){
-				let d:HashMapEntry<K, V> = this._list.splice(i, 1)[0];
+				let d:MapEntry<K, V> = this._list.splice(i, 1)[0];
 				return d.val;
 			}
 			return null;
 		}
 		/**添加键值对 */
 		public put(k:K, v:V):V{
-			let d:HashMapEntry<K, V> = new HashMapEntry<K, V>();
+			let d:MapEntry<K, V> = new MapEntry<K, V>();
 			d.key = k;
 			d.val = v;
 			let i:number = this.getIndexByKey(k);
@@ -57,7 +57,7 @@ module com.extend {
 		public get(k:K):V{
 			if(this._list && this._list.length > 0){
 				for(let i in this._list){
-					let e:HashMapEntry<K, V> = this._list[i];
+					let e:MapEntry<K, V> = this._list[i];
 					if(e.key == k){
 						return e.val;
 					}
@@ -76,7 +76,7 @@ module com.extend {
 		private getIndexByKey(k:K):number{
 			if(this._list && this._list.length > 0){
 				for(let i in this._list){
-					let e:HashMapEntry<K, V> = this._list[i];
+					let e:MapEntry<K, V> = this._list[i];
 					if(e.key == k){
 						return Number(i);
 					}
@@ -88,7 +88,7 @@ module com.extend {
 		private getIndexByValue(v:V):number{
 			if(this._list && this._list.length > 0){
 				for(let i in this._list){
-					let e:HashMapEntry<K, V> = this._list[i];
+					let e:MapEntry<K, V> = this._list[i];
 					if(e.val == v){
 						return Number(i);
 					}
@@ -96,7 +96,7 @@ module com.extend {
 			}
 			return -1;
 		}
-		/**清理HashMap */
+		/**清理Map */
 		public clear():void{
 			this._list = [];
 		}

@@ -1,4 +1,10 @@
 {
-    "CenterLanguage_1":"获取的文本在{0}中不存在",
-    "PanelUtils_1":"当前加载的组{0}不存在"
+    "LanguageUtils_1":"获取的文本在{0}中不存在",
+    "PanelUtils_1":"当前加载的组{0}不存在",
+    "PanelUtils_2":"添加面板失败：当前容器层不存在！",
+    "PanelUtils_3":"关闭面板成功",
+    "PanelUtils_4":"成功释放面板注册表缓存",
+    "PanelUtils_5":"当前面板注册表不存在",
+    "PanelUtils_6":"当前面板id对应面板信息缺失",
+    "ImageLoader_1":"当前路径{0}对应的资源正在加载"
 }

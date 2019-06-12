@@ -5,8 +5,12 @@
 			"name": "preload"
 		},
 		{
-			"keys": "",
+			"keys": "common_atlas0,common",
 			"name": "common"
+		},
+		{
+			"keys": "login,login_atlas0",
+			"name": "login"
 		}
 	],
 	"resources": [
@@ -41,16 +45,6 @@
 			"name": "apple-touch-icon-iphone4_png"
 		},
 		{
-			"url": "loading/img_progressBar.png",
-			"type": "image",
-			"name": "img_progressBar_png"
-		},
-		{
-			"url": "loading/img_progressBorder.png",
-			"type": "image",
-			"name": "img_progressBorder_png"
-		},
-		{
 			"url": "loading/loading_1.gif",
 			"type": "image",
 			"name": "loading_1_gif"
@@ -79,6 +73,26 @@
 			"url": "loading/loading_6.gif",
 			"type": "image",
 			"name": "loading_6_gif"
+		},
+		{
+			"url": "fairyGui/login_atlas0.png",
+			"type": "image",
+			"name": "login_atlas0"
+		},
+		{
+			"url": "fairyGui/common_atlas0.png",
+			"type": "image",
+			"name": "common_atlas0"
+		},
+		{
+			"url": "fairyGui/common.hm",
+			"type": "bin",
+			"name": "common"
+		},
+		{
+			"url": "fairyGui/login.hm",
+			"type": "bin",
+			"name": "login"
 		}
 	]
 }

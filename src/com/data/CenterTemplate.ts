@@ -1,4 +1,7 @@
 module com.data.center {
+	/**
+	 * 所有center主要是用来存数据的
+	 */
 	export class CenterTemplate{
 		/**实例 */
 		private static _instance:CenterTemplate;

@@ -1,7 +1,6 @@
 module com.utils {
 	import PanelInfo = com.data.PanelInfo;
 	import LoginPanel = com.view.login.LoginPanel;
-	import HashMap = com.extend.HashMap;
 	import TypePanelId = com.type.TypePanelId;
 	import TypeContainer = com.type.TypeContainer;
 
@@ -19,18 +18,22 @@ module com.utils {
 		private constructor() {
 		}
 		/**面板信息 */
-		private panelInfoMap:HashMap<string, PanelInfo> = new HashMap<string, PanelInfo>();
+		private _panelInfoMap:Map<string, PanelInfo> = new Map<string, PanelInfo>();
 
+		/**删除注册信息 */
+		public deletePanelInfo(panelId:string):boolean{
+			return this._panelInfoMap.delete(panelId);
+		}
 		/**注册面板信息 */
 		public registerPanelInfo():void{
-			this.registerInfo(TypePanelId.LOGIN, new PanelInfo(TypePanelId.LOGIN, LoginPanel, "common", TypeContainer.BOTTOM));
+			this.registerInfo(TypePanelId.LOGIN, new PanelInfo(TypePanelId.LOGIN, LoginPanel, "login", "login", TypeContainer.BOTTOM));
 		}
 		private registerInfo(panelId:string, panelInfo:PanelInfo):void{
-			this.panelInfoMap.put(panelId, panelInfo);
+			this._panelInfoMap.set(panelId, panelInfo);
 		}
 		/**根据面板id获取面板信息 */
 		public getPanelInfoById(panelId:string):PanelInfo{
-			return this.panelInfoMap.get(panelId);
+			return this._panelInfoMap.get(panelId);
 		}
 
 	}

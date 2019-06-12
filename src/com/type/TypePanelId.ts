@@ -6,5 +6,7 @@ module com.type {
 		}
 		/**登录面板 */
 		public static LOGIN:string = TypePanelId.NEXT;
+		/**测试报错 */
+		public static TEST:string = TypePanelId.NEXT;
 	}
 }
